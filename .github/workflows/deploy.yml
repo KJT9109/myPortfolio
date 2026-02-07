@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ "master" ]
+    schedule:
+    - cron: "0 0 * * *"
 
 permissions:
   contents: read
@@ -22,8 +24,8 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      - run: ls -al
       - run: npm ci
+      - run: npm run fetch:blog
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
