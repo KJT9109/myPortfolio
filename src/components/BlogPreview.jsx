@@ -12,7 +12,7 @@ export default function BlogPreview() {
 
   return (
     <section>
-      <h2>블로그 최근 글</h2>
+      <h2>블로그 공부 정리 </h2>
       <div style={{ display: "grid", gap: 12 }}>
         {items.map((p) => (
           <a key={p.link} href={p.link} target="_blank" rel="noreferrer"

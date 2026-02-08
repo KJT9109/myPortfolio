@@ -1,42 +1,176 @@
-#root {
-  max-width: 1280px;
+:root {
+  --bg: #f7f7f7;
+  --card: #ffffff;
+  --text: #1f1f1f;
+  --muted: #6b6b6b;
+  --line: #e6e6e6;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", sans-serif;
+}
+
+.container {
+  max-width: 980px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 72px 16px;
+}
+
+.hero {
   text-align: center;
+  margin-bottom: 64px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.heroCard {
+  margin: 0 auto;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.name {
+  margin: 0;
+  font-size: 44px;
+  letter-spacing: -0.5px;
+}
+
+.role {
+  margin: 10px 0 0 0;
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.tagline {
+  margin: 24px auto 0 auto;
+  max-width: 640px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.contactList {
+  margin: 28px auto 0 auto;
+  max-width: 520px;
+  text-align: left;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.contactRow {
+  display: flex;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.label {
+  width: 80px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.value {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.section {
+  width: 100%;                 /* 컨테이너 폭을 꽉 쓰되 */
+  margin: 0 auto 18px auto;    /* 카드 자체를 가운데 */
+  box-sizing: border-box;
+
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.section h3 {
+  margin: 0 0 14px 0;
+  font-size: 16px;
+  letter-spacing: 0.2px;
+}
+
+.section p, .section li {
+}
+
+.section ul {
+  padding-left: 18px;
+  margin: 10px 0 0 0;
+}
+
+.section p,
+.section li,
+.heroCard .tagline {
+  max-width: 720px;     /* 읽기 좋은 줄 길이 */
+  margin-left: auto;
+  margin-right: auto;   /* 텍스트 블록만 가운데 */
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.page {
+  background: var(--bg);
+}
+
+.layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 72px 24px;
+
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.sidebar {
+  position: sticky;
+  top: 24px;
+  height: fit-content;
+
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.sideTitle {
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.sideLink {
+  display: block;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.sideLink:hover {
+  background: #f1f1f1;
+}
+
+.sideDivider {
+  height: 1px;
+  background: var(--line);
+  margin: 12px 0;
+}
+
+.content {
+  min-width: 0; /* PDF iframe 넘침 방지 */
+}
+
+/* 모바일 */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
+  .sidebar {
+    position: relative;
+    top: 0;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
