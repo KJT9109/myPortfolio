@@ -1,23 +1,23 @@
-export default function Sidebar() {
+export default function Sidebar({ onGo }) {
   return (
     <nav className="sidebar">
       <div className="sideTitle">Menu</div>
 
-      <a className="sideLink" href="#about">About</a>
-      <a className="sideLink" href="#skills">Skills</a>
-      <a className="sideLink" href="#experience">Experience</a>
+      <button className="sideBtn" onClick={() => onGo("about")}>About</button>
+      <button className="sideBtn" onClick={() => onGo("skills")}>Skills</button>
+      <button className="sideBtn" onClick={() => onGo("experience")}>Experience</button>
 
-      <a className="sideLink" href="#docs">Work Docs</a>
+      <button className="sideBtn" onClick={() => onGo("docs")}>Work Docs</button>
       <div className="sideSub">
-        <a className="sideSubLink" href="#docs?company=gitsn">Gitsn</a>
-        <a className="sideSubLink" href="#docs?company=nucare">Nucare</a>
-        <a className="sideSubLink" href="#docs?company=intellian">Intellian</a>
+        <button className="sideSubBtn" onClick={() => onGo("docs", "gitsn")}>Gitsn</button>
+        <button className="sideSubBtn" onClick={() => onGo("docs", "nucare")}>Nucare</button>
+        <button className="sideSubBtn" onClick={() => onGo("docs", "intellian")}>Intellian</button>
       </div>
 
-      <a className="sideLink" href="#blog">Blog</a>
+      <button className="sideBtn" onClick={() => onGo("blog")}>Blog</button>
 
       <div className="sideDivider" />
-      <a className="sideLink" href="#top">Top ↑</a>
+      <button className="sideBtn" onClick={() => onGo("top")}>Top ↑</button>
     </nav>
   );
 }

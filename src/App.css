@@ -195,3 +195,31 @@ html {
   background: #f1f1f1;
   color: var(--text);
 }
+
+.sideBtn,
+.sideSubBtn {
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 10px 10px;
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.sideBtn:hover {
+  background: #f1f1f1;
+}
+
+.sideSubBtn {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 8px 10px;
+}
+
+.sideSubBtn:hover {
+  background: #f1f1f1;
+  color: var(--text);
+}

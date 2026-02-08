@@ -6,28 +6,15 @@ const DOCS = {
   intellian: { label: "인텔리안테크놀로지스", file: "intellian.pdf" },
 };
 
-function getCompanyFromHash() {
-  // 예: #docs-gitsn, #docs-nucare, #docs-intellian
-  const hash = window.location.hash || "";
-  if (!hash.startsWith("#docs-")) return null;
-  const key = hash.replace("#docs-", "");
-  return DOCS[key] ? key : null;
-}
-
-export default function CompanyDocs() {
+export default function CompanyDocs({ selectedCompany }) {
   const [activeKey, setActiveKey] = useState("gitsn");
 
-  // 해시 변경 시 회사 자동 선택
+  // 부모(App)에서 선택한 회사가 오면 반영
   useEffect(() => {
-    const applyHash = () => {
-      const key = getCompanyFromHash();
-      if (key) setActiveKey(key);
-    };
-
-    applyHash(); // 최초 1회
-    window.addEventListener("hashchange", applyHash);
-    return () => window.removeEventListener("hashchange", applyHash);
-  }, []);
+    if (selectedCompany && DOCS[selectedCompany]) {
+      setActiveKey(selectedCompany);
+    }
+  }, [selectedCompany]);
 
   const active = DOCS[activeKey];
   const src = `${import.meta.env.BASE_URL}docs/${active.file}`;
@@ -39,7 +26,6 @@ export default function CompanyDocs() {
         회사별 개발 정리 문서를 PDF로 제공합니다.
       </p>
 
-      {/* 회사 선택 버튼 */}
       <div style={{ display: "flex", gap: 10, flexWrap: "wrap", marginTop: 16 }}>
         {Object.entries(DOCS).map(([key, d]) => (
           <button
@@ -75,7 +61,6 @@ export default function CompanyDocs() {
         </a>
       </div>
 
-      {/* PDF */}
       <div style={{ marginTop: 16 }}>
         <iframe
           key={src}
