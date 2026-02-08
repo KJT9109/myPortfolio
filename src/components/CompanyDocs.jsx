@@ -1,32 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const DOCS = {
-  gitsn: {
-    label: "지슨",
-    file: "gitsn.pdf",
-  },
-  newcare: {
-    label: "뉴케어",
-    file: "nucare.pdf",
-  },
-  intellian: {
-	label: "인텔리안테크놀로지스",
-	file: "intellian.pdf",
-  }
+  gitsn: { label: "지슨", file: "gitsn.pdf" },
+  nucare: { label: "뉴케어", file: "nucare.pdf" },
+  intellian: { label: "인텔리안테크놀로지스", file: "intellian.pdf" },
 };
+
+function getCompanyFromHash() {
+  // 예: #docs-gitsn, #docs-nucare, #docs-intellian
+  const hash = window.location.hash || "";
+  if (!hash.startsWith("#docs-")) return null;
+  const key = hash.replace("#docs-", "");
+  return DOCS[key] ? key : null;
+}
 
 export default function CompanyDocs() {
   const [activeKey, setActiveKey] = useState("gitsn");
-  const active = DOCS[activeKey];
 
-  // GitHub Pages base 경로 대응
+  // 해시 변경 시 회사 자동 선택
+  useEffect(() => {
+    const applyHash = () => {
+      const key = getCompanyFromHash();
+      if (key) setActiveKey(key);
+    };
+
+    applyHash(); // 최초 1회
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, []);
+
+  const active = DOCS[activeKey];
   const src = `${import.meta.env.BASE_URL}docs/${active.file}`;
 
   return (
     <section>
       <h3>Work Documents</h3>
       <p style={{ color: "#6b6b6b", marginTop: 6 }}>
-        회사에서 어떤 제품과 개발을 해왔는지에 대한 포트폴리오.
+        회사별 개발 정리 문서를 PDF로 제공합니다.
       </p>
 
       {/* 회사 선택 버튼 */}
@@ -49,7 +59,6 @@ export default function CompanyDocs() {
           </button>
         ))}
 
-        {/* 새 탭 열기 */}
         <a
           href={src}
           target="_blank"
@@ -66,10 +75,10 @@ export default function CompanyDocs() {
         </a>
       </div>
 
-      {/* PDF 임베드 */}
+      {/* PDF */}
       <div style={{ marginTop: 16 }}>
         <iframe
-          key={src} // 회사 바꿀 때 강제로 다시 로드
+          key={src}
           src={src}
           width="100%"
           height="900"

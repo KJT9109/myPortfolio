@@ -174,3 +174,24 @@ html {
     top: 0;
   }
 }
+
+.sideSub {
+  margin-top: 6px;
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid var(--line);
+}
+
+.sideSubLink {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.sideSubLink:hover {
+  background: #f1f1f1;
+  color: var(--text);
+}

@@ -6,11 +6,17 @@ export default function Sidebar() {
       <a className="sideLink" href="#about">About</a>
       <a className="sideLink" href="#skills">Skills</a>
       <a className="sideLink" href="#experience">Experience</a>
+
       <a className="sideLink" href="#docs">Work Docs</a>
+      <div className="sideSub">
+        <a className="sideSubLink" href="#docs-gitsn">Gitsn</a>
+        <a className="sideSubLink" href="#docs-nucare">Nucare</a>
+        <a className="sideSubLink" href="#docs-intellian">Intellian</a>
+      </div>
+
       <a className="sideLink" href="#blog">Blog</a>
 
       <div className="sideDivider" />
-
       <a className="sideLink" href="#top">Top ↑</a>
     </nav>
   );
